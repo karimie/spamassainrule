@@ -1,0 +1,2 @@
+# spamassainrule
+Custom Antispam rules
