@@ -32,15 +32,15 @@ describe __RCTM_PHS_SCARE_EN_2 Scaring user to stop services in English
 rawbody __RCTM_PHS_SCARE_MY_2 /(naik taraf|penambahan|peningkatan|sekuriti)/i
 describe __RCTM_PHS_SCARE_MY_2 Scaring user to stop services in Malay
 
-meta CTM_PHS_CLICK (__RCTM_PHS_CLICK_EN_1 + __RCTM_PHS_CLICK_MY_1 >=1)
+meta CTM_PHS_CLICK ((__RCTM_PHS_CLICK_EN_1 + __RCTM_PHS_CLICK_MY_1) >=1)
 describe CTM_PHS_CLICK Calling to click email link
 score 1.0
 
-meta CTM_PHS_UPDATE (__RCTM_PHS_UPDATE_EN_1 + __RCTM_PHS_UPDATE_MY_1 >=1)
+meta CTM_PHS_UPDATE ((__RCTM_PHS_UPDATE_EN_1 + __RCTM_PHS_UPDATE_MY_1) >=1)
 describe CTM_PHS_UPDATE Asking to update profile details
 score 1.0
 
-meta CTM_PHS_SCARE (__RCTM_PHS_SCARE_EN_1 + __RCTM_PHS_SCARE_EN_2 + __RCTM_PHS_SCARE_MY_1 + __RCTM_PHS_SCARE_MY_2 >=1)
+meta CTM_PHS_SCARE ((__RCTM_PHS_SCARE_EN_1 + __RCTM_PHS_SCARE_EN_2 + __RCTM_PHS_SCARE_MY_1 + __RCTM_PHS_SCARE_MY_2) >=1)
 describe CTM_PHS_SCARE Scaring user to stop services
 score 1.0
 
