@@ -1,1 +1,49 @@
 
+#Main key of phishing email is to get user to click email link and redirect them to a dummy website where user will keyin their data.
+rawbody __RCTM_PHS_LINK /\bhttps?:\/\//i
+describe __RCTM_PHS_LINK Email contain any website link and redirect user to a dummy landing page.
+
+meta CTM_PHS_LINK (__RCTM_PHS_LINK)
+describe CTM_PHS_LINK Score if contain web link inside email.
+score CTM_PHS_LINK 0.5
+
+#Phishing for email account.
+rawbody __RCTM_PHS_CLICK_EN_1 /\bclick\s(link|this link|here|updated? link)\b/i
+describe __RCTM_PHS_CLICK_EN_1 Calling to click email link in English
+
+rawbody __RCTM_PHS_CLICK_MY_1 /\bklik\s(disini|di sini)\b/i
+describe __RCTM_PHS_CLICK_MY_1 Calling to click email link in Malay
+
+body __RCTM_PHS_UPDATE_EN_1 /(confirm(ed)?|verify)\syour\s(information|details?)/i
+describe __RCTM_PHS_UPDATE_EN_1 Asking to update profile details in English
+
+rawbody __RCTM_PHS_UPDATE_MY_1 /\b(mengemas kini|kemaskini|kemas kini|mengesah(kan)?|sah(kan)?)\b/i
+describe __RCTM_PHS_UPDATE_MY_1 Asking to update profile details in Malay
+
+rawbody __RCTM_PHS_SCARE_EN_1 /(suspend(ed)?|limit(ed)?)/i
+describe __RCTM_PHS_SCARE_EN_1 Scaring user to stop services in English
+
+rawbody __RCTM_PHS_SCARE_MY_1 /\bmengelakkan\s(penyekatan|penutupan)\b/i
+describe __RCTM_PHS_SCARE_MY_1 Scaring user to stop services in Malay
+
+rawbody __RCTM_PHS_SCARE_EN_2 /(upgrade(ed)?|security)/i
+describe __RCTM_PHS_SCARE_EN_2 Scaring user to stop services in English
+
+rawbody __RCTM_PHS_SCARE_MY_2 /(naik taraf|penambahan|peningkatan|sekuriti)/i
+describe __RCTM_PHS_SCARE_MY_2 Scaring user to stop services in Malay
+
+meta CTM_PHS_CLICK (__RCTM_PHS_CLICK_EN_1 + __RCTM_PHS_CLICK_MY_1 >=1)
+describe CTM_PHS_CLICK Calling to click email link
+score 1.0
+
+meta CTM_PHS_UPDATE (__RCTM_PHS_UPDATE_EN_1 + __RCTM_PHS_UPDATE_MY_1 >=1)
+describe CTM_PHS_UPDATE Asking to update profile details
+score 1.0
+
+meta CTM_PHS_SCARE (__RCTM_PHS_SCARE_EN_1 + __RCTM_PHS_SCARE_EN_2 + __RCTM_PHS_SCARE_MY_1 + __RCTM_PHS_SCARE_MY_2 >=1)
+describe CTM_PHS_SCARE Scaring user to stop services
+score 1.0
+
+meta CTM_PHS_COMPLETE ((__RCTM_PHS_CLICK_EN_1 + __RCTM_PHS_CLICK_MY_1 + __RCTM_PHS_UPDATE_EN_1 + __RCTM_PHS_UPDATE_MY_1 + __RCTM_PHS_SCARE_EN_1 + __RCTM_PHS_SCARE_EN_2 + __RCTM_PHS_SCARE_MY_1 + __RCTM_PHS_SCARE_MY_2 )+ __RCTM_PHS_LINK >=2)
+describe CTM_PHS_COMPLETE Almost confirm phishing email
+score 2.5
