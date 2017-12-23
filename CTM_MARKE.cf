@@ -1,1 +1,26 @@
 #SA custom rules for specific email marketing targetting customers for loan. cover both Malay and English
+header __RCTM_MARKE_SUB_MLY_1 Subject =~ /\b(tawaran|pinjaman|peribadi|kakitangan|kerajaan)\b/i
+describe __RCTM_MARKE_SUB_MLY_1 Email subject contain malay persuasive words
+
+header __RCTM_MARKE_SF_1 ALL =~ /gmail.com/i
+describe __RCTM_MARKE_SF_1 Normally this marketing emails were send from gmail servers.
+
+body __RCTM_MARKE_BDY_MLY_1 /\b(layak memohon|memohon| me mohon|daftar|pinjaman|pinjaman peribadi|peribadi|meminjam)\b/i
+describe __RCTM_MARKE_BDY_MLY_1 Email content contain malay words memohon
+
+body __RCTM_MARKE_BDY_MLY_2 /(ccris|ctos|ptptn)/i
+describe __RCTM_MARKE_BDY_MLY_2 Common loan issue with ctos, ccris, ptptn
+
+body __RCTM_MARKE_BDY_MLY_3 /\b(pay slip|payslip|salary slip|salary)\b/i
+describe __RCTM_MARKE_BDY_MLY_3 Email content contain malay words PAY SLIP
+
+body __RCTM_MARKE_BDY_MLY_4 /\bbiro angkasa\b/i
+describe __RCTM_MARKE_BDY_MLY_4 Email content contain government related body ANGKASA
+
+meta CTM_MARKE_MLY_HDR ( __RCTM_MARKE_SUB_MLY_1 + __RCTM_MARKE_SF_1 > = 2 )
+describe CTM_MARKE_MLY_HDR Possible marketing emails for loans
+score CTM_MARKE_MLY_HDR 2.5
+
+meta CTM_MARKE_MLY_BDY ( __RCTM_MARKE_BDY_MLY_1 + __RCTM_MARKE_BDY_MLY_2 + __RCTM_MARKE_BDY_MLY_3 + __RCTM_MARKE_BDY_MLY_4 >= 3 )
+describe CTM_MARKE_MLY_BDY Marketting emails for government loans
+score CTM_MARKE_MLY_BDY 2.5
