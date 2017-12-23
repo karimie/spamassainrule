@@ -71,6 +71,6 @@ meta CTM_PHS_SCAM_BDY_MY ( __RCTM_PHS_SCAM_BDY_MY_1 + __RCTM_PHS_SCAM_BDY_MY_2 +
 describe CTM_PHS_SCAM_BDY_MY Possibilities the email is a SCAM
 score CTM_PHS_SCAM_BDY_MY 2.5
 
-meta CTM_PHS_SCAM_MY ( __TO_EQ_FROM_1 &&  PHS_BDY_MLY_SPAM )
+meta CTM_PHS_SCAM_MY ( __TO_EQ_FROM_1 &&  CTM_PHS_SCAM_BDY_MY )
 describe CTM_PHS_SCAM_MY Email was sent from and to the same address
 score CTM_PHS_SCAM_MY 2.5
