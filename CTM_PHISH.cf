@@ -49,37 +49,28 @@ score 2.5
 
 #Phishing email claiming sending money to their account and persuade users reply their email in malay
 
-body __PHS_BDY_MLY_EML /\bnama saya\b/i
-describe __PHS_BDY_MLY_EML Introduce name
+body __RCTM_PHS_SCAM_BDY_MY_1 /\b(nama saya|maklumat)\b/i
+describe __RCTM_PHS_SCAM_BDY_MY_1 They loved to Introduce themselves
 
-body __PHS_BDY_MLY_CNCR /\bcancer\b/i
-describe __PHS_BDY_MLY_CNCR had cancer
+body __RCTM_PHS_SCAM_BDY_MY_2 /\b(cancer|ill|die|murder|meninggal|sakit)\b/i
+describe __RCTM_PHS_SCAM_BDY_MY_2 Always tell a sad story
 
-body __PHS_BDY_MLY_AFRCA /\bafrica/i
-describe __PHS_BDY_MLY_AFRCA Always has africa
+body __RCTM_PHS_SCAM_BDY_MY_3 /\b(negara|africa)/i
+describe __RCTM_PHS_SCAM_BDY_MY_3 Always relate to specific country like africa
 
-body __PHS_BDY_MLY_CURRENCY /\bUSD|EUR\b/i
-describe __PHS_BDY_MLY_CURRENCY Always brag about good currency
+body __RCTM_PHS_SCAM_BDY_MY_4 /\bUSD|EUR\b/i
+describe __RCTM_PHS_SCAM_BDY_MY_4 Always brag about good currency
 
-body __PHS_BDY_MLY_BNK /\bbank/i
-describe __PHS_BDY_MLY_BNK contain bank
+body __RCTM_PHS_SCAM_BDY_MY_5 /\b(bank|money|duit|dana)/i
+describe __RCTM_PHS_SCAM_BDY_MY_5 Always talk abount money and bank
 
-body __PHS_BDY_MLY_DANA /\bdana\b/i
-describe __PHS_BDY_MLY_DANA contain dana
+body __RCTM_PHS_SCAM_BDY_MY_6 /(sihat|kesihatan)/i
+describe __RCTM_PHS_SCAM_BDY_MY_6 contain kesihatan
 
-body __PHS_BDY_MLY_KSHTAN /sihat/i
-describe __PHS_BDY_MLY_KSHTAN contain kesihatan
+meta CTM_PHS_SCAM_BDY_MY ( __RCTM_PHS_SCAM_BDY_MY_1 + __RCTM_PHS_SCAM_BDY_MY_2 + __RCTM_PHS_SCAM_BDY_MY_3 + __RCTM_PHS_SCAM_BDY_MY_4 + __RCTM_PHS_SCAM_BDY_MY_5 + __RCTM_PHS_SCAM_BDY_MY_6  >= 4 )
+describe CTM_PHS_SCAM_BDY_MY Possibilities the email is a SCAM
+score CTM_PHS_SCAM_BDY_MY 2.5
 
-body __PHS_BDY_MLY_CNTRY /\bnegara\b/i
-describe __PHS_BDY_MLY_CNTRY contain negara
-
-body __PHS_BDY_MLY_MKLMT /\bmaklumat\b/i
-describe __PHS_BDY_MLY_MKLMT contain maklumat
-
-meta PHS_BDY_MLY_SPAM ( __PHS_BDY_MLY_EML + __PHS_BDY_MLY_CNCR + __PHS_BDY_MLY_AFRCA + __PHS_BDY_MLY_CURRENCY + __PHS_BDY_MLY_BNK + __PHS_BDY_MLY_DANA + __PHS_BDY_MLY_KSHTAN + __PHS_BDY_MLY_CNTRY + __PHS_BDY_MLY_MKLMT  >= 4 )
-describe PHS_BDY_MLY_SPAM Using combination of existing ruleset
-score PHS_BDY_MLY_SPAM 3.9
-
-meta PHS_CMB_MLY_SPAM ( __TO_EQ_FROM_1 &&  PHS_BDY_MLY_SPAM )
-describe PHS_CMB_MLY_SPAM Using combination of existing ruleset
-score PHS_CMB_MLY_SPAM 2.9
+meta CTM_PHS_SCAM_MY ( __TO_EQ_FROM_1 &&  PHS_BDY_MLY_SPAM )
+describe CTM_PHS_SCAM_MY Email was sent from and to the same address
+score CTM_PHS_SCAM_MY 2.5
