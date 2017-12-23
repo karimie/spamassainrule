@@ -1,4 +1,3 @@
-
 #Main key of phishing email is to get user to click email link and redirect them to a dummy website where user will keyin their data.
 rawbody __RCTM_PHS_LINK /\bhttps?:\/\//i
 describe __RCTM_PHS_LINK Email contain any website link and redirect user to a dummy landing page.
