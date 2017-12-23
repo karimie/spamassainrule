@@ -1,0 +1,2 @@
+#SA custom policy which trying to spoof as email coming from Malaysia banks. Do remember that Malaysia banks will not send 
+#email request for user to update their profile or threatening users to close/suspend account.
