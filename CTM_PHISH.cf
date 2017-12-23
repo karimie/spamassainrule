@@ -46,3 +46,40 @@ score 1.0
 meta CTM_PHS_COMPLETE ((__RCTM_PHS_CLICK_EN_1 + __RCTM_PHS_CLICK_MY_1 + __RCTM_PHS_UPDATE_EN_1 + __RCTM_PHS_UPDATE_MY_1 + __RCTM_PHS_SCARE_EN_1 + __RCTM_PHS_SCARE_EN_2 + __RCTM_PHS_SCARE_MY_1 + __RCTM_PHS_SCARE_MY_2 )+ __RCTM_PHS_LINK >=2)
 describe CTM_PHS_COMPLETE Almost confirm phishing email
 score 2.5
+
+#Phishing email claiming sending money to their account and persuade users reply their email in malay
+
+body __PHS_BDY_MLY_EML /\bnama saya\b/i
+describe __PHS_BDY_MLY_EML Introduce name
+
+body __PHS_BDY_MLY_CNCR /\bcancer\b/i
+describe __PHS_BDY_MLY_CNCR had cancer
+
+body __PHS_BDY_MLY_AFRCA /\bafrica/i
+describe __PHS_BDY_MLY_AFRCA Always has africa
+
+body __PHS_BDY_MLY_CURRENCY /\bUSD|EUR\b/i
+describe __PHS_BDY_MLY_CURRENCY Always brag about good currency
+
+body __PHS_BDY_MLY_BNK /\bbank/i
+describe __PHS_BDY_MLY_BNK contain bank
+
+body __PHS_BDY_MLY_DANA /\bdana\b/i
+describe __PHS_BDY_MLY_DANA contain dana
+
+body __PHS_BDY_MLY_KSHTAN /sihat/i
+describe __PHS_BDY_MLY_KSHTAN contain kesihatan
+
+body __PHS_BDY_MLY_CNTRY /\bnegara\b/i
+describe __PHS_BDY_MLY_CNTRY contain negara
+
+body __PHS_BDY_MLY_MKLMT /\bmaklumat\b/i
+describe __PHS_BDY_MLY_MKLMT contain maklumat
+
+meta PHS_BDY_MLY_SPAM ( __PHS_BDY_MLY_EML + __PHS_BDY_MLY_CNCR + __PHS_BDY_MLY_AFRCA + __PHS_BDY_MLY_CURRENCY + __PHS_BDY_MLY_BNK + __PHS_BDY_MLY_DANA + __PHS_BDY_MLY_KSHTAN + __PHS_BDY_MLY_CNTRY + __PHS_BDY_MLY_MKLMT  >= 4 )
+describe PHS_BDY_MLY_SPAM Using combination of existing ruleset
+score PHS_BDY_MLY_SPAM 3.9
+
+meta PHS_CMB_MLY_SPAM ( __TO_EQ_FROM_1 &&  PHS_BDY_MLY_SPAM )
+describe PHS_CMB_MLY_SPAM Using combination of existing ruleset
+score PHS_CMB_MLY_SPAM 2.9
