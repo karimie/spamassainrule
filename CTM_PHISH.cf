@@ -29,7 +29,7 @@ describe __RCTM_PHS_SCARE_EN_1 Scaring user to stop services in English
 rawbody __RCTM_PHS_SCARE_MY_1 /\bmengelakkan\s(penyekatan|penutupan)\b/i
 describe __RCTM_PHS_SCARE_MY_1 Scaring user to stop services in Malay
 
-rawbody __RCTM_PHS_SCARE_EN_2 /(upgrade(ed)?|security)/i
+rawbody __RCTM_PHS_SCARE_EN_2 /(upgrade(ed)?|security|terminat(ed)?)/i
 describe __RCTM_PHS_SCARE_EN_2 Scaring user to stop services in English
 
 rawbody __RCTM_PHS_SCARE_MY_2 /(naik taraf|penambahan|peningkatan|sekuriti)/i
