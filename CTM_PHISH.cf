@@ -4,18 +4,18 @@
 #Target: Malay and English language
 #Main key of phishing email is to get user to click email link and redirect them to a dummy website where user will keyin their data.
 rawbody __RCTM_PHS_LINK /\bhttps?:\/\//i
-describe __RCTM_PHS_LINK Email contain any website link and redirect user to a dummy landing page.
+describe __RCTM_PHS_LINK Email contain any website link and possible redirection to a dummy landing page.
 
 meta CTM_PHS_LINK (__RCTM_PHS_LINK)
-describe CTM_PHS_LINK Score if contain web link inside email.
+describe CTM_PHS_LINK Containing web link inside email.
 score CTM_PHS_LINK 0.5
 
 #Phishing for email account.
 rawbody __RCTM_PHS_CLICK_EN_1 /\bclick\s(link|this link|here|updated? link)\b/i
 describe __RCTM_PHS_CLICK_EN_1 Calling to click email link in English
 
-rawbody __RCTM_PHS_CLICK_MY_1 /\bklik\s(disini|di sini)\b/i
-rawbody __RCTM_PHS_CLICK_MY_1 /\tekan\s(disini|di sini)\b/i
+rawbody __RCTM_PHS_CLICK_MY_1 /\bklik\s(sini|disini|di sini)\b/i
+rawbody __RCTM_PHS_CLICK_MY_1 /\tekan\s(sini|disini|di sini)\b/i
 describe __RCTM_PHS_CLICK_MY_1 Calling to click email link in Malay
 
 body __RCTM_PHS_UPDATE_EN_1 /(confirm(ed)?|verify)\syour\s(information|details?)/i
