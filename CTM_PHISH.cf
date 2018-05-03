@@ -15,18 +15,21 @@ rawbody __RCTM_PHS_CLICK_EN_1 /\bclick\s(link|this link|here|updated? link)\b/i
 describe __RCTM_PHS_CLICK_EN_1 Calling to click email link in English
 
 rawbody __RCTM_PHS_CLICK_MY_1 /\bklik\s(disini|di sini)\b/i
+rawbody __RCTM_PHS_CLICK_MY_1 /\tekan\s(disini|di sini)\b/i
 describe __RCTM_PHS_CLICK_MY_1 Calling to click email link in Malay
 
 body __RCTM_PHS_UPDATE_EN_1 /(confirm(ed)?|verify)\syour\s(information|details?)/i
 describe __RCTM_PHS_UPDATE_EN_1 Asking to update profile details in English
 
-rawbody __RCTM_PHS_UPDATE_MY_1 /\b(mengemas kini|kemaskini|kemas kini|mengesah(kan)?|sah(kan)?)\b/i
+rawbody __RCTM_PHS_UPDATE_MY_1 /\b(mengemaskini|mengemas kini|kemaskini|kemas kini|mengesah(kan)?|sah(kan)?)\b/i
 describe __RCTM_PHS_UPDATE_MY_1 Asking to update profile details in Malay
 
 rawbody __RCTM_PHS_SCARE_EN_1 /(suspend(ed)?|limit(ed)?)/i
 describe __RCTM_PHS_SCARE_EN_1 Scaring user to stop services in English
 
 rawbody __RCTM_PHS_SCARE_MY_1 /\bmengelakkan\s(penyekatan|penutupan)\b/i
+rawbody __RCTM_PHS_SCARE_MY_1 /\bmelongarkan\s(akaun webmail|pakaun web-mail)\b/i
+rawbody __RCTM_PHS_SCARE_MY_1 /\bserangan\s(virus|penggodam|hacker)\b/i
 describe __RCTM_PHS_SCARE_MY_1 Scaring user to stop services in Malay
 
 rawbody __RCTM_PHS_SCARE_EN_2 /(upgrade(ed)?|security|terminat(ed)?)/i
