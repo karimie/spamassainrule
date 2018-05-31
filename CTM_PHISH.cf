@@ -1,7 +1,13 @@
 #Author: Karimie
 #version: 1.0
-#date: 03/05/18
+#date: 31/05/18
 #Target: Malay and English language
+
+#Emails send with no subject will be penalize with higher score.
+header CTM_MISSING_SUBJ Subject =~ /^$/
+describe Email with empty subject header
+score CTM_MISSING_SUBJ 5.5
+
 #Main key of phishing email is to get user to click email link and redirect them to a dummy website where user will keyin their data.
 rawbody __RCTM_PHS_LINK /\bhttps?:\/\//i
 describe __RCTM_PHS_LINK Email contain any website link and possible redirection to a dummy landing page.
