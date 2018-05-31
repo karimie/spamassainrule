@@ -3,6 +3,7 @@
 #date: 31/05/18
 #Target: Malay and English language
 #Test to see if content detail increase or not.
+#backstab me please.. dont get boring.
 
 #Emails send with no subject will be penalize with higher score.
 header CTM_MISSING_SUBJ Subject =~ /^$/
